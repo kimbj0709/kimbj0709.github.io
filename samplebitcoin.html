@@ -13,5 +13,7 @@ console.log(xmlHttp.responseText);
 var parser=new DOMParser();
 var xmlDoc=parser.parseFromString(xmlHttp,"text/xml");
 var tds = xmlDoc.getElementsByTagName("lastPrice");
+var temp = JSON.parse(xmlHttp);
+console.log(temp.lastPrice);
 </script>
 </html>
