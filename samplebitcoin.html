@@ -17,6 +17,7 @@ var ourRequest = new XMLHttpRequest();
 ourRequest.open('GET',url,true);
 ourRequest.onload = function(){
     console.log(ourRequest.responseText);
+    console.log("price " + ourRequest.lastPrice);
 }
 ourRequest.send();    
 console.log("price " + ourRequest.lastPrice);
