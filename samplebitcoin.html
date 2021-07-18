@@ -3,15 +3,21 @@
 <body>
 <p id = "binance_bitcoin_price"></p>
 <p id = "bithumb_bitcoin_price"></p>
+<p id = "bithumb_bitcoin_price_USD"> </p>
+<p id = "percentage_diff"> </p>
 <script>
+//find bitcoin price from binance in USDT(USD)
 const url_binance = 'https://api.binance.com/api/v1/ticker/24hr?symbol=BTCUSDT';
-const url_bithumb = 'https://api.bithumb.com/public/ticker/BTC_KRW';
 var request_binance = new XMLHttpRequest();
 request_binance.open('GET',url_binance,false);
 request_binance.send(null);
 var rawdata_binance = request_binance.responseText;
 var data_binance = JSON.parse(rawdata_binance);
-document.getElementById("binance_bitcoin_price").innerHTML = data_binance.lastPrice;
+var binance_price = data_binance.lastPrice;
+document.getElementById("binance_bitcoin_price").innerHTML = binance_price;
+
+//find bitcoin price from bithumb in KRW
+const url_bithumb = 'https://api.bithumb.com/public/ticker/BTC_KRW';
 var request_bithumb = new XMLHttpRequest();
 request_bithumb.open('GET',url_bithumb,false);
 request_bithumb.send(null);
@@ -19,6 +25,25 @@ console.log(request_bithumb.responseText);
 var rawdata_bithumb = request_bithumb.responseText;
 var data_bithumb = JSON.parse(rawdata_bithumb);
 document.getElementById("bithumb_bitcoin_price").innerHTML = data_bithumb.data.opening_price;
+
+//find usd to krw exchange rate
+const url_exchange_rate = 'https://openexchangerates.org/api/latest.json?app_id=6d603fb30d884b0c96862c84f8464136';
+var request_exchange_rate = new XMLHttpRequest();
+request_exchange_rate.open('GET',url_exchange_rate,false);
+request_exchange_rate.send(null);
+var rawdata_exchange_rate = request_exchange_rate.responseText;
+var data_exchange_rate = JSON.parse(rawdata_exchange_rate);
+var usd_to_krw = data_exchange_rate.rates.KRW;
+var bithumb_price_in_usd = data_bithumb.data.opening_price/usd_to_krw;
+document.getElementById("bithumb_bitcoin_price_USD").innerHTML = bithumb_price_in_usd;
+
+//find percentage difference
+var percent_difference = (bithumb_price_in_usd-binance_price)/binance_price;
+percent_difference *= 100;
+percent_difference = percent_difference.toPrecision(4);
+document.getElementById("percentage_diff").innerHTML = percent_difference;
+
+
 
 </script>
 
