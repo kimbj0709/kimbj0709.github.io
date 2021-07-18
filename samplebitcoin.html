@@ -9,7 +9,7 @@ var url = "https://api.binance.com/api/v1/ticker/24hr?symbol=BTCUSDT";
 var xmlHttp = new XMLHttpRequest();
 xmlHttp.open( "GET", url, false ); // false for synchronous request
 xmlHttp.send( null );
-console.log(xmlHttp.lastPrice);
+console.log(xmlHttp.responseText);
 
 </script>
 </html>
