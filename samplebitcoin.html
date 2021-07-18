@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-<h2>Fetch a JSON file with XMLHttpRequest</h2>
-<p id="demo"></p>
-
+<p id="binance_bicoin_price"></p>
 <script>
 const url = 'https://api.binance.com/api/v1/ticker/24hr?symbol=BTCUSDT';
 var request = new XMLHttpRequest();
 request.open('GET',url,false);
-request.sned(null);
+request.send(null);
 console.log(request.responseText);
 var rawdata = request.responseText;
 var data = JSON.parse(rawdata);
+document.getElementById("binance_bitcoin_price").innerHTML = data.lastPrice;
+
 console.log(data.lastPrice);
 </script>
 
