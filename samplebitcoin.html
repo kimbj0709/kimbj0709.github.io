@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
 <body>
-<p id="binance_bicoin_price"></p>
+<p id = "binance_bitcoin_price"></p>
+<p id = "bithumb_bitcoin_price"></p>
 <script>
-const url = 'https://api.binance.com/api/v1/ticker/24hr?symbol=BTCUSDT';
-var request = new XMLHttpRequest();
-request.open('GET',url,false);
-request.send(null);
-console.log(request.responseText);
-var rawdata = request.responseText;
-var data = JSON.parse(rawdata);
-document.getElementById("binance_bitcoin_price").innerHTML = data.lastPrice;
+const url_binance = 'https://api.binance.com/api/v1/ticker/24hr?symbol=BTCUSDT';
+const url_bithumb = 'https://api.bithumb.com/public/ticker/BTC_KRW';
+var request_binance = new XMLHttpRequest();
+request_binance.open('GET',url_binance,false);
+request_binance.send(null);
+var rawdata_binance = request_binance.responseText;
+var data_binance = JSON.parse(rawdata_binance);
+document.getElementById("binance_bitcoin_price").innerHTML = data_binance.lastPrice;
+var request_bithumb = new XMLHttpRequest();
+request_bithumb.open('GET',url_bithumb,false);
+request_bithumb.send(null);
+console.log(request_bithumb.responseText);
+var rawdata_bithumb = request_bithumb.responseText;
+var data_bithumb = JSON.parse(rawdata_bithumb);
+document.getElementById("bithumb_bitcoin_price").innerHTML = data_bithumb.data.opening_price;
 
-console.log(data.lastPrice);
 </script>
 
 </body>
