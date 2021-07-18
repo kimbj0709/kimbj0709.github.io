@@ -10,6 +10,8 @@ var xmlHttp = new XMLHttpRequest();
 xmlHttp.open( "GET", url, false ); // false for synchronous request
 xmlHttp.send( null );
 console.log(xmlHttp.responseText);
-
+var parser=new DOMParser();
+var xmlDoc=parser.parseFromString(xmlHttp,"text/xml");
+var tds = xmlDoc.getElementsByTagName("lastPrice");
 </script>
 </html>
