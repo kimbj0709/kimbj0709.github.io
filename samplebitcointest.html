@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Fetch a JSON file with XMLHttpRequest</h2>
+<p id="demo"></p>
+
+<script>
+responseObj = readJsonFromUrl('https://api.binance.com/api/v1/ticker/24hr?symbol=BTCUSDT');
+var count = responseObj.query.lastPrice;
+
+console.log(count) // should be 1
+</script>
+
+</body>
+</html>
