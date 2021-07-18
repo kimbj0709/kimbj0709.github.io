@@ -4,22 +4,12 @@
 </body>
 <script>
 
-var burl = "https://api.binance.com";
+var url = "https://api.binance.com/api/v1/ticker/24hr?symbol=BTCUSDT";
 
-var query = '/api/v1/ticker/24hr';
-    
-query += '?symbol=BTCUSDT';
+var xmlHttp = new XMLHttpRequest();
+xmlHttp.open( "GET", url, false ); // false for synchronous request
+xmlHttp.send( null );
+console.Log(xmlHttp.lastPrice);
 
-var url = burl + query;
-    
-var ourRequest = new XMLHttpRequest();
-
-ourRequest.open('GET',url,true);
-ourRequest.onload = function(){
-    console.log(ourRequest.responseText);
-    console.log("price " + ourRequest.lastPrice);
-}
-ourRequest.send();    
-console.log("price " + ourRequest.lastPrice);
 </script>
 </html>
